@@ -1,7 +1,7 @@
 <?php
 use My\Library\Account\BankAccount;
 
-$account = new \My\Library\Account\BankAccount(100000.00);
+$account = new BankAccount(100000.00);
 $currentBalance = $account->getBalance();
 echo "<p>Account balance: $currentBalance</p>";
 $operation = $account->cashOut(4500.00);

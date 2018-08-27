@@ -1,58 +1,57 @@
 <?php
-namespace My\Library\Account {
+namespace My\Library\Account;
 
-    /**
-     * Bank Account
-     */
-    class BankAccount implements FinancialAccount
+/**
+ * Bank Account
+ */
+class BankAccount implements FinancialAccount
+{
+    private $balance;
+    private $number;
+
+    public function __construct($initialBalance)
     {
-        private $balance;
-        private $number;
+        if (!is_double($initialBalance)) {
+            $this->balance = 0;
+        } else if ($initialBalance > 0) {
+            $this->balance = $initialBalance;
+        } else {
+            $this->balance = 0;
+        }
+    }
 
-        public function __construct($initialBalance)
-        {
-            if (!is_double($initialBalance)) {
-                $this->balance = 0;
-            } else if ($initialBalance > 0) {
-                $this->balance = $initialBalance;
-            } else {
-                $this->balance = 0;
-            }
+    public function getBalance()
+    {
+        return $this->balance;
+    }
+
+    public function cashOut($value)
+    {
+        if (!is_double($value)) {
+            return false;
         }
 
-        public function getBalance()
-        {
-            return $this->balance;
+        if (($this->balance - $value) < 0) {
+            return false;
         }
 
-        public function cashOut($value)
-        {
-            if (!is_double($value)) {
-                return false;
-            }
+        $this->balance -= $value;
+        return true;
+    }
 
-            if (($this->balance - $value) < 0) {
-                return false;
-            }
-
-            $this->balance -= $value;
-            return true;
+    public function cashIn($value)
+    {
+        if (!is_double($value)) {
+            return false;
         }
 
-        public function cashIn($value)
-        {
-            if (!is_double($value)) {
-                return false;
-            }
+        $this->balance += $value;
 
-            $this->balance += $value;
+        return true;
+    }
 
-            return true;
-        }
-
-        public function getNumber()
-        {
-            $this->number;
-        }
+    public function getNumber()
+    {
+        $this->number;
     }
 }

@@ -1,5 +1,6 @@
 <?php
 use PHPUnit\Framework\TestCase;
+use My\Library\Account\BankAccount;
 
 final class BankAccountTest extends TestCase {
     private $bankAccount;
